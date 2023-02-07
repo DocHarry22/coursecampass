@@ -86,7 +86,7 @@ const Sidebar = () => {
                             ml="15px" 
                             >
                                 <Typography variant="h3" color={colors.grey[100]}>
-                                    CourseCampass
+                                    CourseFinder
                                 </Typography>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
@@ -134,8 +134,17 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         /> 
-                       <Item 
-                            title="Calculate APS Score"
+
+                        <Typography 
+                            variant="h6" 
+                            color={colors.grey[300]} 
+                            sx={{ m: "15px 0 5px 20px"}}
+                        >
+                            Eligibility
+                        </Typography>
+                       
+                        <Item 
+                            title="APS Score"
                             to="/aps"
                             icon={<CalculateOutlinedIcon />}
                             selected={selected}
@@ -155,6 +164,15 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         /> 
+
+                        <Typography 
+                            variant="h6" 
+                            color={colors.grey[300]} 
+                            sx={{ m: "15px 0 5px 20px"}}
+                        >
+                            Payment Options
+                        </Typography>
+
                        <Item 
                             title="Source Funding"
                             to="/funding"
