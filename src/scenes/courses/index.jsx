@@ -1,38 +1,63 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import { mockDataCoursesUni } from "../../data/mockDataCourse";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
-
+import RangeSlider from "../../components/RangeSlider"
 
 const Courses = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     const columns = [
-        {field: "id", headerName: "ID"}, 
-        { field: "name", headerName: "Name", flex: 1, cellClassName: "name-column--cell",},
         {
-            field: "age", headerName: "Age", type: "number", headerAlign: "left", align: "left",
+            field: "id", 
+            headerName: "ID"
+        }, 
+        { 
+            field: "course", 
+            headerName: "Course", 
+            flex: 1, 
+            cellClassName: "name-column--cell",
+        },
+        { 
+            field: "school", 
+            headerName: "School/Faculty", 
+            flex: 1, 
         },
         {
-            field: "phone",
-            headerName: "Phone Number",
+            field: "aps", 
+            headerName: "APS", 
+            type: "number", 
+            headerAlign: "left", 
+            align: "left",
+        },
+        {
+            field: "qualification",
+            headerName: "Qualification Level",
             flex: 1,
         },
         {
-            field: "email",
-            headerName: "Email",
+            field: "tuitionCost",
+            headerName: "Tution Cost",
             flex: 1,
         },
         {
-            field: "access",
-            headerName: "Access Level",
+            field: "industry",
+            headerName: "Field",
             flex: 1,
-            renderCell: ({ row: {access}}) => {
+        },
+        {
+            field: "aboutCourse",
+            headerName: "About Course",
+            flex: 1,
+        },
+        {
+            field: "applyLink",
+            headerName: "Apply",
+            flex: 1,
+            renderCell: ({ row: {applyLink}}) => {
                 return (
                     <Box 
                         width="60%"
@@ -41,25 +66,31 @@ const Courses = () => {
                         display="flex"
                         justifyContent="center"
                         backgroundColor={
-                            access === "admin" ? colors.greenAccent[600] : colors.greenAccent[700]
+                            colors.greenAccent[700]
                         }
                         borderRadius="4px"
                     >
-                        {access ==="admin" && <AdminPanelSettingsOutlinedIcon />}
-                        {access ==="manager" && <SecurityOutlinedIcon />}
-                        {access ==="user" && <LockOpenOutlinedIcon />}
-                        <Typography color={colors.grey[100]} sx={{ml: "5px"}} >
-                            {access}
-                        </Typography>
+                        {<LockOpenOutlinedIcon />}
+                        <a href={applyLink}>
+
+                            <Typography color={colors.blueAccent[800]} sx={{ml: "5px"}} >
+                                Apply
+                            </Typography>
+                        </a>
                     </Box>
                 )
             }
         },
     ]
 
+
     return (
         <Box m="20px">
-            <Header title="Courses" subtitle="View the courses you qualify for.." />
+            <Header title="Courses" subtitle="Search for the courses you're interested in..." />
+            <Box display="flex" justifyContent="center" maxWidth="75vw">
+                <Typography gutterBottom variant="h5" >APS Slider to filter Courses</Typography>
+                <RangeSlider />
+            </Box>
             <Box 
                 m="40px 0 0 0" 
                 height="75vh"
@@ -83,12 +114,17 @@ const Courses = () => {
                     "& .MuiDataGrid-footerContainer": {
                         borderTop: "none",
                         backgroundColor: colors.blueAccent[700], 
+                    },
+                    "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+                        color: `${colors.grey[100]} !important`,
                     }
                 }}
                 >
                 <DataGrid 
-                    rows={mockDataTeam}
+                    rows={mockDataCoursesUni}
                     columns={columns}
+                    components={{ Toolbar: GridToolbar }}
+                    checkboxSelection
                 />
 
             </Box>
