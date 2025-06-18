@@ -57,9 +57,9 @@ const Sidebar = () => {
                 backgroundColor: "transparent !important"
             },
             "& .pro-inner-item": {
-                padding: "5px 35px 5px 20pxx !important"
+                padding: "5px 35px 5px 20px !important"
             },
-            "& .pro-innter-item:hover": {
+            "& .pro-inner-item:hover": {
                 color: "#868dfb !important"
             },
             "& .pro-menu-item.active": {
@@ -236,13 +236,13 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         /> 
-                       <Item 
-                            title="Line Chart"
-                            to="/lie"
-                            icon={<TimelineOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        /> 
+                        <Item
+                             title="Line Chart"
+                             to="/line"
+                             icon={<TimelineOutlinedIcon />}
+                             selected={selected}
+                             setSelected={setSelected}
+                         />
                        <Item 
                             title="Geography Chart"
                             to="/geography"
