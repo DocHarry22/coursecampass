@@ -144,8 +144,8 @@ const Sidebar = () => {
                         </Typography>
                        
                         <Item 
-                            title="APS Score"
-                            to="/aps"
+                            title="APS Calculator"
+                            to="/apcalculator"
                             icon={<CalculateOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}

@@ -5,6 +5,7 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Courses from "./scenes/courses";
+import APCalculator from './scenes/apcalculator/APCalculator';
 // import Team from "./scenes/Team";
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
@@ -31,6 +32,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/courses" element={<Courses />} />
+              <Route path="/apcalculator" element={<APCalculator />} />
               {/* <Route path="/team" element={<Team />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/contacts" element={<Contacts />} />
