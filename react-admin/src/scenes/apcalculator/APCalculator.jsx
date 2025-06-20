@@ -97,7 +97,7 @@ const APCalculator = () => {
         ))}
       </TextField>
 
-      <Box display="flex" flexDirection="column" gap={4} maxWidth={600}>
+      <Box display="flex" flexDirection="column" gap={4} maxWidth={800}>
         {subjectList.map((entry, index) => (
           <Box key={index} display="flex" gap={2} alignItems="center">
             <Autocomplete
@@ -126,15 +126,44 @@ const APCalculator = () => {
           </Box>
         ))}
 
-        <Button variant="outlined" onClick={handleAddSubject}>
+        <Button
+          variant="outlined"
+          onClick={handleAddSubject}
+          sx={{
+            borderColor: colors.greenAccent[400],
+            color: colors.greenAccent[400],
+            '&:hover': {
+              borderColor: colors.greenAccent[300],
+              backgroundColor: colors.greenAccent[800],
+              color: colors.grey[100]
+            }
+          }}
+        >
           Add Another Subject
         </Button>
 
-        <Button variant="text" color="secondary" onClick={() => setRequestDialogOpen(true)}>
+        <Button
+          variant="text"
+          onClick={() => setRequestDialogOpen(true)}
+          sx={{
+            color: colors.blueAccent[300],
+            '&:hover': { backgroundColor: 'transparent', color: colors.blueAccent[200] }
+          }}
+        >
           Request to Add a Subject
         </Button>
 
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          sx={{
+            backgroundColor: colors.greenAccent[600],
+            color: colors.grey[900],
+            '&:hover': {
+              backgroundColor: colors.greenAccent[500]
+            }
+          }}
+        >
           Calculate APS
         </Button>
       </Box>
@@ -165,7 +194,18 @@ const APCalculator = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setRequestDialogOpen(false)} color="primary">Close</Button>
+          <Button
+            onClick={() => setRequestDialogOpen(false)}
+            sx={{
+              backgroundColor: colors.blueAccent[500],
+              color: colors.grey[100],
+              '&:hover': {
+                backgroundColor: colors.blueAccent[400]
+              }
+            }}
+          >
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
