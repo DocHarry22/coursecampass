@@ -1,6 +1,7 @@
 // src/scenes/apcalculator/APCalculator.jsx
 import React, { useState } from 'react';
-import { Box, Typography, TextField, MenuItem, Button, IconButton, Autocomplete, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+import { Box, Typography, TextField, MenuItem, Button, IconButton, Autocomplete, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, useTheme } from '@mui/material';
+import { tokens } from '../../theme';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -27,6 +28,9 @@ const APCalculator = () => {
 
   const [university, setUniversity] = useState('wits');
   const [results, setResults] = useState(null);
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   const handleChange = (index, field, value) => {
     const updated = [...subjectList];
@@ -61,7 +65,7 @@ const APCalculator = () => {
       {
         label: 'APS Points by University',
         data: Object.values(results),
-        backgroundColor: Object.keys(results).map(() => '#3f51b5')
+        backgroundColor: Object.keys(results).map(() => colors.blueAccent[500])
       }
     ]
   } : {
@@ -70,14 +74,16 @@ const APCalculator = () => {
       {
         label: `APS Points (${university.toUpperCase()})`,
         data: results ? [results.apsScore] : [0],
-        backgroundColor: ['#3f51b5']
+        backgroundColor: [colors.blueAccent[500]]
       }
     ]
   };
 
   return (
-    <Box m={4}>
-      <Typography variant="h4" gutterBottom>South African APS Calculator</Typography>
+    <Box m={4} sx={{ color: colors.grey[100] }}>
+      <Typography variant="h4" gutterBottom color={colors.greenAccent[400]}>
+        South African APS Calculator
+      </Typography>
 
       <TextField
         select
@@ -135,22 +141,26 @@ const APCalculator = () => {
 
       {results && (
         <Box mt={5}>
-          <Typography variant="h6">Results:</Typography>
+          <Typography variant="h6" color={colors.grey[100]}>Results:</Typography>
           <Bar data={chartData} />
           {university === 'all' ? (
             Object.entries(results).map(([uni, score]) => (
-              <Typography key={uni} mt={2}>{uni.toUpperCase()} APS Score: {score}</Typography>
+              <Typography key={uni} mt={2} color={colors.grey[100]}>
+                {uni.toUpperCase()} APS Score: {score}
+              </Typography>
             ))
           ) : (
-            <Typography mt={2}>{university.toUpperCase()} APS Score: {results.apsScore}</Typography>
+            <Typography mt={2} color={colors.grey[100]}>
+              {university.toUpperCase()} APS Score: {results.apsScore}
+            </Typography>
           )}
         </Box>
       )}
 
       <Dialog open={requestDialogOpen} onClose={() => setRequestDialogOpen(false)}>
-        <DialogTitle>Request New Subject</DialogTitle>
+        <DialogTitle sx={{ color: colors.grey[100] }}>Request New Subject</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText sx={{ color: colors.grey[100] }}>
             If your subject is not listed, you may request it to be added by contacting the administrator or submitting feedback.
           </DialogContentText>
         </DialogContent>
