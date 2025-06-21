@@ -1,6 +1,7 @@
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
+import { SnackbarProvider } from 'notistack';
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
@@ -29,7 +30,8 @@ function App() {
           <Sidebar />
           <main className="content">
             <Topbar />
-            <Routes>
+            <SnackbarProvider maxSnack={3}>
+              <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/courses" element={<Courses />} />
               <Route path="/apcalculator" element={<APCalculator />} />
@@ -44,6 +46,7 @@ function App() {
               <Route path="/geography" element={<Geography />} />
               <Route path="/calender" element={<Calendar />} /> */}
             </Routes>
+            </SnackbarProvider>
           </main>
         </div>
       </ThemeProvider>
