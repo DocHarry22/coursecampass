@@ -10,10 +10,9 @@ app.get('/', (req, res) => {
   res.send('CourseCompass backend running...');
 });
 
-// in backend/server.js or index.js
+// Link APS calculator route
 const calculateRoute = require('./routes/apcalculator');
-app.use('/api', calculateRoute);
-
+app.use('/api/calculate', calculateRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
