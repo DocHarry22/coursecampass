@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
-hmtl,
+html,
 body,
 #root,
 .app,
@@ -24,11 +24,11 @@ body,
 }
 
 /* Handle */
-::webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #888;
 }
 
 /* Handle on Hover */
-::webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
