@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
 
 // color design tokens export
@@ -196,15 +196,32 @@ export const themeSettings = (mode) => {
 // context for color mode
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
+  setColorMode: () => {},
 });
 
+const COLOR_MODE_STORAGE_KEY = "courseCompass::colorMode";
+
+const loadInitialMode = () => {
+  if (typeof window === "undefined") return "dark";
+  return window.localStorage.getItem(COLOR_MODE_STORAGE_KEY) || "dark";
+};
+
 export const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState(loadInitialMode);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, mode);
+  }, [mode]);
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
+      setColorMode: (explicitMode) => {
+        if (!explicitMode || explicitMode === "system") return;
+        setMode(explicitMode === "light" ? "light" : "dark");
+      },
     }),
     []
   );
