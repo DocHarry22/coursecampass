@@ -1,6 +1,14 @@
 # 🌟 CourseCompass
 ### *Your Ultimate Gateway to Online Learning Excellence*
 
+## Current Local Status
+
+This repository contains a broad MERN-style implementation with backend routes, React admin/student screens, local MongoDB development data, scraper tooling, and extensive implementation notes. The current workspace is not a clean production release: many source files are modified, several new feature files are still untracked, and generated local artifacts should stay out of version control.
+
+Safe local cleanup has been added to `.gitignore` for nested `node_modules`, local env files, React builds, coverage, backend logs, local MongoDB data, and `Water-Nest-HP002` backup/conflict files. Existing tracked files are intentionally left untouched.
+
+Production readiness still requires a clean commit review, real payment provider configuration, confirmed email credentials, a deployment environment, test/build verification, and removal or archival of generated development data outside the repository.
+
 > 🚀 **Empowering learners worldwide with AI-driven course discovery, expert-led education, and cutting-edge learning management.**
 
 CourseCompass is a comprehensive, enterprise-grade online learning platform that connects students with top universities and instructors globally. From APS calculations for South African universities to AI-powered course recommendations, payment processing, and verified certificates—CourseCompass is your complete educational ecosystem.
