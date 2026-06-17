@@ -26,6 +26,8 @@ const Courses = () => {
 
     useEffect(() => {
         fetchCourses();
+        // fetchCourses is defined outside this effect and is stable.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters, sortBy]);
 
     useEffect(() => {

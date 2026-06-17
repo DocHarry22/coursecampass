@@ -16,13 +16,12 @@ import {
     Rating,
     Button,
     Chip,
-    Divider,
     useTheme
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ClearIcon from "@mui/icons-material/Clear";
-import { tokens } from "../../theme";
+import { tokens } from "../theme";
 import { useState, useEffect } from "react";
 
 const CourseFilters = ({ onFilterChange }) => {
@@ -150,6 +149,9 @@ const CourseFilters = ({ onFilterChange }) => {
         });
 
         onFilterChange(filters);
+    // onFilterChange is intentionally omitted – including it would cause an
+    // infinite re-render loop unless the parent memoises the callback.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         selectedUniversities, selectedRegion, deliveryModes, selectedCategories,
         priceRange, pricingType, durationRange, levels, selectedLanguage,

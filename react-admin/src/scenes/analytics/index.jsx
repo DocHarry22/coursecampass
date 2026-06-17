@@ -16,7 +16,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   CircularProgress,
   Alert
 } from '@mui/material';
@@ -47,7 +46,7 @@ import { useAuth } from '../../context/AuthContext';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 const Analytics = () => {
-  const { user } = useAuth();
+  useAuth();
   const [timeRange, setTimeRange] = useState('30');
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -55,6 +54,8 @@ const Analytics = () => {
 
   useEffect(() => {
     fetchAnalytics();
+    // fetchAnalytics is defined after this effect; stable across renders.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRange]);
 
   const fetchAnalytics = async () => {

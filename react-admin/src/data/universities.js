@@ -3,6 +3,8 @@ const universities = [
 	{ label: 'WITS', value: 'wits' },
 	{ label: 'University of Pretoria (UP)', value: 'up' },
 	{ label: 'University of Johannesburg (UJ)', value: 'uj' },
+	{ label: 'Central University of Technology (CUT)', value: 'cut' },
+	{ label: 'Vaal University of Technology (VUT)', value: 'vut' },
 	{ label: 'University of Cape Town (UCT)', value: 'uct' },
 	{ label: 'Stellenbosch University (SUN)', value: 'sun' },
 ];
