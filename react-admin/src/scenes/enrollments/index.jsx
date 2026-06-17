@@ -31,6 +31,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import API_BASE from '../../config/api';
 
 const EnrollmentProgress = () => {
   const { token } = useAuth();
@@ -45,7 +46,7 @@ const EnrollmentProgress = () => {
 
   const fetchEnrollments = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/enrollments?limit=100', {
+      const response = await fetch(`${API_BASE}/api/enrollments?limit=100`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -61,7 +62,7 @@ const EnrollmentProgress = () => {
 
   const fetchStats = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/enrollments/stats', {
+      const response = await fetch(`${API_BASE}/api/enrollments/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -82,7 +83,7 @@ const EnrollmentProgress = () => {
     if (!selectedEnrollment || !newNote.trim()) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/enrollments/${selectedEnrollment._id}/notes`, {
+      const response = await fetch(`${API_BASE}/api/enrollments/${selectedEnrollment._id}/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +105,7 @@ const EnrollmentProgress = () => {
 
   const markAsCompleted = async (enrollmentId) => {
     try {
-      await fetch(`http://localhost:5000/api/enrollments/${enrollmentId}/status`, {
+      await fetch(`${API_BASE}/api/enrollments/${enrollmentId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

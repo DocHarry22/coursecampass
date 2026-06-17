@@ -15,6 +15,7 @@ import {
   CircularProgress
 } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
+import API_BASE from '../config/api';
 
 const ReviewSubmission = ({ open, onClose, courseId, courseName, onSubmitSuccess, existingReview }) => {
   const { token } = useAuth();
@@ -59,8 +60,8 @@ const ReviewSubmission = ({ open, onClose, courseId, courseName, onSubmitSuccess
 
     try {
       const url = existingReview 
-        ? `http://localhost:5000/api/reviews/${existingReview._id}`
-        : 'http://localhost:5000/api/reviews';
+        ? `${API_BASE}/api/reviews/${existingReview._id}`
+        : `${API_BASE}/api/reviews`;
       
       const method = existingReview ? 'PUT' : 'POST';
 

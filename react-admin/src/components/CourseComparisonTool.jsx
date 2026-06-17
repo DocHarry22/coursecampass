@@ -23,6 +23,7 @@ import { tokens } from "../theme";
 import CloseIcon from "@mui/icons-material/Close";
 import LaunchIcon from "@mui/icons-material/Launch";
 import DeleteIcon from "@mui/icons-material/Delete";
+import API_BASE from '../config/api';
 
 const CourseComparisonTool = ({ open, onClose, comparisonList, onRemove }) => {
     const theme = useTheme();
@@ -35,7 +36,7 @@ const CourseComparisonTool = ({ open, onClose, comparisonList, onRemove }) => {
         try {
             // Fetch details for all courses in comparison list
             const coursePromises = comparisonList.map(id =>
-                fetch(`http://localhost:5000/api/courses/${id}`).then(res => res.json())
+                fetch(`${API_BASE}/api/courses/${id}`).then(res => res.json())
             );
             const results = await Promise.all(coursePromises);
             const validCourses = results

@@ -41,6 +41,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import API_BASE from '../../config/api';
 
 const AdminDashboard = () => {
   const { token, user } = useAuth();
@@ -75,7 +76,7 @@ const AdminDashboard = () => {
       setLoading(true);
       
       // Fetch admin stats
-      const statsRes = await fetch('http://localhost:5000/api/admin/stats', {
+      const statsRes = await fetch(`${API_BASE}/api/admin/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const statsData = await statsRes.json();
@@ -84,7 +85,7 @@ const AdminDashboard = () => {
       }
 
       // Fetch users
-      const usersRes = await fetch('http://localhost:5000/api/admin/users?limit=50', {
+      const usersRes = await fetch(`${API_BASE}/api/admin/users?limit=50`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const usersData = await usersRes.json();
@@ -93,7 +94,7 @@ const AdminDashboard = () => {
       }
 
       // Fetch pending reviews
-      const reviewsRes = await fetch('http://localhost:5000/api/reviews/moderation/pending', {
+      const reviewsRes = await fetch(`${API_BASE}/api/reviews/moderation/pending`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const reviewsData = await reviewsRes.json();
@@ -112,7 +113,7 @@ const AdminDashboard = () => {
 
   const updateUserRole = async (userId, newRole) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/role`, {
+      const response = await fetch(`${API_BASE}/api/admin/users/${userId}/role`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +138,7 @@ const AdminDashboard = () => {
 
   const toggleUserStatus = async (userId, suspend) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/${suspend ? 'suspend' : 'activate'}`, {
+      const response = await fetch(`${API_BASE}/api/admin/users/${userId}/${suspend ? 'suspend' : 'activate'}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -157,7 +158,7 @@ const AdminDashboard = () => {
 
   const moderateReview = async (reviewId, action) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/${reviewId}/moderate`, {
+      const response = await fetch(`${API_BASE}/api/reviews/${reviewId}/moderate`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

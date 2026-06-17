@@ -32,6 +32,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
 import ReviewSubmission from './ReviewSubmission';
+import API_BASE from '../config/api';
 
 const ReviewList = ({ courseId, courseName, onReviewUpdate }) => {
   const { token, user } = useAuth();
@@ -47,7 +48,7 @@ const ReviewList = ({ courseId, courseName, onReviewUpdate }) => {
 
   const fetchReviews = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/course/${courseId}`);
+      const response = await fetch(`${API_BASE}/api/reviews/course/${courseId}`);
       const data = await response.json();
       
       if (data.success) {
@@ -83,7 +84,7 @@ const ReviewList = ({ courseId, courseName, onReviewUpdate }) => {
 
     try {
       const endpoint = isHelpful ? 'helpful' : 'not-helpful';
-      const response = await fetch(`http://localhost:5000/api/reviews/${reviewId}/${endpoint}`, {
+      const response = await fetch(`${API_BASE}/api/reviews/${reviewId}/${endpoint}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -104,7 +105,7 @@ const ReviewList = ({ courseId, courseName, onReviewUpdate }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/${selectedReview._id}`, {
+      const response = await fetch(`${API_BASE}/api/reviews/${selectedReview._id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -128,7 +129,7 @@ const ReviewList = ({ courseId, courseName, onReviewUpdate }) => {
 
   const handleFlag = async (reason) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/${selectedReview._id}/flag`, {
+      const response = await fetch(`${API_BASE}/api/reviews/${selectedReview._id}/flag`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
