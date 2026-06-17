@@ -16,14 +16,14 @@ import {
     Rating,
     Button,
     Chip,
-    Divider,
     useTheme
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ClearIcon from "@mui/icons-material/Clear";
-import { tokens } from "../../theme";
+import { tokens } from "../theme";
 import { useState, useEffect } from "react";
+import API_BASE from '../config/api';
 
 const CourseFilters = ({ onFilterChange }) => {
     const theme = useTheme();
@@ -78,7 +78,7 @@ const CourseFilters = ({ onFilterChange }) => {
 
     const fetchUniversities = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/universities');
+            const response = await fetch(`${API_BASE}/api/universities`);
             const data = await response.json();
             if (data.success) {
                 setUniversities(data.data.map(u => ({ id: u._id, label: u.name })));
@@ -90,7 +90,7 @@ const CourseFilters = ({ onFilterChange }) => {
 
     const fetchRegions = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/regions');
+            const response = await fetch(`${API_BASE}/api/regions`);
             const data = await response.json();
             if (data.success) {
                 setRegions(data.data);
@@ -102,7 +102,7 @@ const CourseFilters = ({ onFilterChange }) => {
 
     const fetchCategories = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/categories');
+            const response = await fetch(`${API_BASE}/api/categories`);
             const data = await response.json();
             if (data.success) {
                 setCategories(data.data);
@@ -150,6 +150,9 @@ const CourseFilters = ({ onFilterChange }) => {
         });
 
         onFilterChange(filters);
+    // onFilterChange is intentionally omitted – including it would cause an
+    // infinite re-render loop unless the parent memoises the callback.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         selectedUniversities, selectedRegion, deliveryModes, selectedCategories,
         priceRange, pricingType, durationRange, levels, selectedLanguage,

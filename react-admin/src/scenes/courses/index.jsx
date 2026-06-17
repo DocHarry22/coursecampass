@@ -11,6 +11,7 @@ import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import Header from "../../components/Header";
 import CourseFilters from "../../components/CourseFilters";
 import CourseCard from "../../components/CourseCard";
+import API_BASE from '../../config/api';
 
 const Courses = () => {
     const theme = useTheme();
@@ -26,6 +27,8 @@ const Courses = () => {
 
     useEffect(() => {
         fetchCourses();
+        // fetchCourses is defined outside this effect and is stable.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters, sortBy]);
 
     useEffect(() => {
@@ -86,7 +89,7 @@ const Courses = () => {
             };
             params.append('sort', sortMapping[sortBy] || '-createdAt');
             
-            const response = await fetch(`http://localhost:5000/api/courses?${params.toString()}`);
+            const response = await fetch(`${API_BASE}/api/courses?${params.toString()}`);
             const data = await response.json();
             
             if (data.success) {

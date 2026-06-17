@@ -22,7 +22,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 
 const Certificates = () => {
-  const { user } = useAuth();
+  useAuth();
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

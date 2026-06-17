@@ -30,6 +30,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import API_BASE from '../../config/api';
 
 const Favorites = () => {
   const theme = useTheme();
@@ -61,7 +62,7 @@ const Favorites = () => {
 
   const fetchFavorites = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/favorites', {
+      const response = await fetch(`${API_BASE}/api/favorites`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -77,7 +78,7 @@ const Favorites = () => {
 
   const fetchCollections = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/favorites/collections', {
+      const response = await fetch(`${API_BASE}/api/favorites/collections`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -91,7 +92,7 @@ const Favorites = () => {
 
   const handleRemoveFavorite = async (courseId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/favorites/${courseId}`, {
+      const response = await fetch(`${API_BASE}/api/favorites/${courseId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -106,7 +107,7 @@ const Favorites = () => {
 
   const handleMoveToCollection = async (courseId, collection) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/favorites/${courseId}`, {
+      const response = await fetch(`${API_BASE}/api/favorites/${courseId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +130,7 @@ const Favorites = () => {
     if (!selectedFavorite) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/favorites/${selectedFavorite.course._id}`, {
+      const response = await fetch(`${API_BASE}/api/favorites/${selectedFavorite.course._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

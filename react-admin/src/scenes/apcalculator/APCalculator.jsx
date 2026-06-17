@@ -37,6 +37,7 @@ import {
   Tooltip as ChartTooltip,
   Legend
 } from 'chart.js';
+import API_BASE from '../../config/api';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ChartTooltip, Legend);
 
@@ -131,7 +132,7 @@ const APCalculator = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/calculate', {
+      const response = await axios.post(`${API_BASE}/api/calculate`, {
         subjects: subjectList,
         university
       });

@@ -29,6 +29,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LaunchIcon from "@mui/icons-material/Launch";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import API_BASE from '../../config/api';
 
 const CourseDetail = () => {
     const { id } = useParams();
@@ -43,7 +44,7 @@ const CourseDetail = () => {
 
     const fetchRelatedCourses = useCallback(async (categoryId, currentCourseId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/courses?category=${categoryId}&limit=4`);
+            const response = await fetch(`${API_BASE}/api/courses?category=${categoryId}&limit=4`);
             const data = await response.json();
             
             if (data.success) {
@@ -58,7 +59,7 @@ const CourseDetail = () => {
 
     const fetchCourseDetail = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/courses/${id}`);
+            const response = await fetch(`${API_BASE}/api/courses/${id}`);
             const data = await response.json();
             
             if (data.success) {

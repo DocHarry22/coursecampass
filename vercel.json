@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd react-admin && npm install && npm run build",
+  "outputDirectory": "react-admin/build",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

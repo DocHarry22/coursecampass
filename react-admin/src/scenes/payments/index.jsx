@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box,
-  Card,
-  CardContent,
   Typography,
   Table,
   TableBody,
@@ -29,7 +27,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 
 const PaymentHistory = () => {
-  const { user } = useAuth();
+  useAuth();
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

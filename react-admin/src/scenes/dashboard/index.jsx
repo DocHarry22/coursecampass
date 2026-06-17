@@ -25,6 +25,7 @@ import TimerIcon from '@mui/icons-material/Timer';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import API_BASE from '../../config/api';
 
 
 const Dashboard = () => {
@@ -52,7 +53,7 @@ const Dashboard = () => {
         setLoading(true);
         
         // Fetch enrollment stats
-        const statsRes = await fetch('http://localhost:5000/api/enrollments/stats', {
+        const statsRes = await fetch(`${API_BASE}/api/enrollments/stats`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -63,7 +64,7 @@ const Dashboard = () => {
         }
         
         // Fetch recent enrollments
-        const enrollmentsRes = await fetch('http://localhost:5000/api/enrollments?limit=6', {
+        const enrollmentsRes = await fetch(`${API_BASE}/api/enrollments?limit=6`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -74,7 +75,7 @@ const Dashboard = () => {
         }
         
         // Fetch favorites
-        const favoritesRes = await fetch('http://localhost:5000/api/favorites', {
+        const favoritesRes = await fetch(`${API_BASE}/api/favorites`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

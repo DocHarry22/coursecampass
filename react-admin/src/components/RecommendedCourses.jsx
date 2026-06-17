@@ -13,6 +13,7 @@ import {
 import { TrendingUp as TrendingUpIcon, School as SchoolIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import API_BASE from '../config/api';
 
 const RecommendedCourses = ({ title = "Recommended for You", endpoint = "/api/recommendations", limit = 6 }) => {
   const { token } = useAuth();
@@ -23,7 +24,7 @@ const RecommendedCourses = ({ title = "Recommended for You", endpoint = "/api/re
   const fetchRecommendations = useCallback(async () => {
     try {
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
-      const response = await fetch(`http://localhost:5000${endpoint}?limit=${limit}`, { headers });
+      const response = await fetch(`${API_BASE}${endpoint}?limit=${limit}`, { headers });
       const data = await response.json();
       
       if (data.success) {
